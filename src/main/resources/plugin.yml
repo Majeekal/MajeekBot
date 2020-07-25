@@ -1,0 +1,7 @@
+name: MajeekBot
+version: ${project.version}
+main: me.majeek.Main
+api-version: 1.16
+authors: [Majeek]
+description: Discord and spigot APIs
+depend: [JDA]
