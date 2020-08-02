@@ -1,5 +1,6 @@
 package me.majeek.minecraft;
 
+import me.majeek.Color;
 import me.majeek.Main;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -13,15 +14,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MinecraftChat extends ListenerAdapter implements Listener {
-    private final Color green = new Color(67, 181, 129);
-    private final Color red = new Color(255, 71, 15);
-
     @EventHandler
     public void onMessage(AsyncPlayerChatEvent event){
         List<String> names = Main.getInstance().getConfig().getStringList("minecraft-names");
@@ -43,7 +40,7 @@ public class MinecraftChat extends ListenerAdapter implements Listener {
 
         EmbedBuilder builder = new EmbedBuilder();
 
-        builder.setColor(green);
+        builder.setColor(Color.GREEN.getColor());
         builder.setDescription(event.getMessage());
         builder.setThumbnail(url);
         builder.setAuthor(author, null, url);
@@ -60,7 +57,7 @@ public class MinecraftChat extends ListenerAdapter implements Listener {
 
             EmbedBuilder builder = new EmbedBuilder();
 
-            builder.setColor(green);
+            builder.setColor(Color.GREEN.getColor());
             builder.setDescription(message);
             builder.setThumbnail(event.getAuthor().getAvatarUrl());
             builder.setAuthor(event.getAuthor().getAsTag(), null, event.getAuthor().getAvatarUrl());

@@ -1,22 +1,20 @@
 package me.majeek.discord.commands;
 
 import me.majeek.Main;
+import me.majeek.Color;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-import java.awt.*;
 import java.util.List;
 
 public class Username extends ListenerAdapter {
-    private Color yellow = new Color(255, 255, 0);
-
     public void onGuildMessageReceived(GuildMessageReceivedEvent event){
         if(!event.getAuthor().isBot() && Main.getInstance().getConfig().getString("server-id").equalsIgnoreCase(event.getGuild().getId())){
             String[] message = event.getMessage().getContentRaw().split(" ");
 
             EmbedBuilder builder = new EmbedBuilder();
-            builder.setColor(yellow);
+            builder.setColor(Color.YELLOW.getColor());
 
             if(message[0].equalsIgnoreCase("~username")){
                 if(message.length <= 1){

@@ -29,9 +29,9 @@ public final class Main extends JavaPlugin {
         saveDefaultConfig();
 
         // Discord API
-        try{ jda = JDABuilder.createDefault("NzM2MDEwMjI2MjM0NDI1MzU0.Xxow4A.jEkmxD3stZEV_A3arkbt_ajf-oA").setChunkingFilter(ChunkingFilter.ALL).setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS).build(); }
+        try{ jda = JDABuilder.createDefault("NzM2MDEwMjI2MjM0NDI1MzU0.Xxok8A.RcKMsPKQyjHo8dhUbFPfCRvy4zE").setChunkingFilter(ChunkingFilter.ALL).setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS).build(); }
         catch (LoginException e){ e.printStackTrace(); }
-        jda.getPresence().setActivity(Activity.playing("~help"));
+        jda.getPresence().setActivity(Activity.playing("~help | agmc.mc.gg"));
 
         // Managers and Listeners
         discordListener = new DiscordListener(this);
