@@ -1,6 +1,7 @@
 package me.majeek;
 
 public enum Color {
+    BLUE(new java.awt.Color(51, 127, 213)),
     GREEN(new java.awt.Color(67, 181, 129)),
     YELLOW(new java.awt.Color(255, 255, 0)),
     RED(new java.awt.Color(255, 71, 15));

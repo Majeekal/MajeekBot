@@ -1,7 +1,7 @@
 package me.majeek.minecraft.listeners;
 
 import me.majeek.Main;
-import me.majeek.minecraft.MinecraftChat;
+import me.majeek.minecraft.events.MinecraftChat;
 
 public class MinecraftListener {
     public MinecraftListener(Main instance){

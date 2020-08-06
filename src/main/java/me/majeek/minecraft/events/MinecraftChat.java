@@ -1,4 +1,4 @@
-package me.majeek.minecraft;
+package me.majeek.minecraft.events;
 
 import me.majeek.Color;
 import me.majeek.Main;
@@ -13,6 +13,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.server.BroadcastMessageEvent;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -66,5 +69,65 @@ public class MinecraftChat extends ListenerAdapter implements Listener {
             event.getChannel().sendMessage(builder.build()).queue();
             Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&8[&bDiscord&8]&r " + event.getAuthor().getAsTag() + " " + event.getMessage().getContentRaw()));
         }
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event){
+        List<String> names = Main.getInstance().getConfig().getStringList("minecraft-names");
+        List<String> tags = Main.getInstance().getConfig().getStringList("discord-tags");
+
+        Guild guild = Main.getInstance().getJda().getGuildById(Main.getInstance().getConfig().getString("server-id"));
+        TextChannel channel = guild.getTextChannelById(Main.getInstance().getConfig().getString("chat-channel-id"));
+
+        String author = event.getPlayer().getName();
+        String url = guild.getIconUrl();
+
+        if(names.contains(event.getPlayer().getName())) {
+            for (Member member : guild.getMembers()) {
+                if (member.getUser().getAsTag().equals(tags.get(names.indexOf(event.getPlayer().getName())))){
+                    url = member.getUser().getAvatarUrl();
+                }
+            }
+        }
+
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.setColor(Color.BLUE.getColor());
+        builder.setDescription(author);
+        builder.setThumbnail(url);
+        builder.setAuthor("Player Joined", null, url);
+        builder.setTimestamp(LocalDateTime.now());
+
+        channel.sendMessage(builder.build()).queue();
+    }
+
+    @EventHandler
+    public void onPlayerLeave(PlayerQuitEvent event){
+        List<String> names = Main.getInstance().getConfig().getStringList("minecraft-names");
+        List<String> tags = Main.getInstance().getConfig().getStringList("discord-tags");
+
+        Guild guild = Main.getInstance().getJda().getGuildById(Main.getInstance().getConfig().getString("server-id"));
+        TextChannel channel = guild.getTextChannelById(Main.getInstance().getConfig().getString("chat-channel-id"));
+
+        String author = event.getPlayer().getName();
+        String url = guild.getIconUrl();
+
+        if(names.contains(event.getPlayer().getName())) {
+            for (Member member : guild.getMembers()) {
+                if (member.getUser().getAsTag().equals(tags.get(names.indexOf(event.getPlayer().getName())))){
+                    url = member.getUser().getAvatarUrl();
+                }
+            }
+        }
+
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.setColor(Color.RED.getColor());
+        builder.setDescription(author);
+        builder.setThumbnail(url);
+        builder.setAuthor("Player Left", null, url);
+        builder.setTimestamp(LocalDateTime.now());
+
+        channel.sendMessage(builder.build()).queue();
     }
 }
