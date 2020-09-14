@@ -78,7 +78,7 @@
         <dependency>
             <groupId>us.mcdevs.library.jda</groupId>
             <artifactId>JDA</artifactId>
-            <version>4.1.1_167</version>
+            <version>4.2.0_204</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

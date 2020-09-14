@@ -1,7 +1,6 @@
 package me.majeek;
 
 import me.majeek.discord.listeners.DiscordListener;
-import me.majeek.minecraft.listeners.MinecraftListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -16,7 +15,6 @@ public final class Main extends JavaPlugin {
     private static Main instance;
     private JDA jda;
     private DiscordListener discordListener;
-    private MinecraftListener minecraftListener;
 
     private String prefix = "~";
     
@@ -35,7 +33,6 @@ public final class Main extends JavaPlugin {
 
         // Managers and Listeners
         discordListener = new DiscordListener(this);
-        minecraftListener = new MinecraftListener(this);
     }
 
     @Override
@@ -55,10 +52,6 @@ public final class Main extends JavaPlugin {
         return discordListener;
     }
 
-    public MinecraftListener getMinecraftListener() {
-        return minecraftListener;
-    }
-
     public static void setInstance(Main instance) {
         Main.instance = instance;
     }
@@ -69,9 +62,5 @@ public final class Main extends JavaPlugin {
 
     public void setDiscordListener(DiscordListener discordListener) {
         this.discordListener = discordListener;
-    }
-
-    public void setMinecraftListener(MinecraftListener minecraftListener) {
-        this.minecraftListener = minecraftListener;
     }
 }

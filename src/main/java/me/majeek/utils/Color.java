@@ -1,4 +1,4 @@
-package me.majeek;
+package me.majeek.utils;
 
 public enum Color {
     BLUE(new java.awt.Color(51, 127, 213)),
