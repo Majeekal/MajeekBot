@@ -7,11 +7,10 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 public class Spam extends ListenerAdapter {
     public void onGuildMessageReceived(GuildMessageReceivedEvent event){
-        if(event.getAuthor().getAsTag().equalsIgnoreCase("Majeek#2260")){
+        if(event.getAuthor().getAsTag().equalsIgnoreCase("Majeek#2260") || event.getAuthor().getAsTag().equalsIgnoreCase("humongous_chungus_fungus#7419")){
             String[] message = event.getMessage().getContentRaw().split(" ");
 
             if(message[0].equalsIgnoreCase("~spam") && message.length > 3){

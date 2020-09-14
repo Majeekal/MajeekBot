@@ -29,7 +29,7 @@ public final class Main extends JavaPlugin {
         // Discord API
         try{ jda = JDABuilder.createDefault("").setChunkingFilter(ChunkingFilter.ALL).setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS).build(); }
         catch (LoginException e){ e.printStackTrace(); }
-        jda.getPresence().setActivity(Activity.playing("~help | agmc.mc.gg"));
+        jda.getPresence().setActivity(Activity.playing("~help"));
 
         // Managers and Listeners
         discordListener = new DiscordListener(this);
