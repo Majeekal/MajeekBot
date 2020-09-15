@@ -23,9 +23,6 @@ public final class Main extends JavaPlugin {
         // Instance
         instance = this;
 
-        // Config
-        saveDefaultConfig();
-
         // Discord API
         try{ jda = JDABuilder.createDefault("").setChunkingFilter(ChunkingFilter.ALL).setMemberCachePolicy(MemberCachePolicy.ALL).enableIntents(GatewayIntent.GUILD_MEMBERS).build(); }
         catch (LoginException e){ e.printStackTrace(); }
