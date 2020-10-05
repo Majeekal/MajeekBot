@@ -16,7 +16,7 @@ public final class Main extends JavaPlugin {
     private JDA jda;
     private DiscordListener discordListener;
 
-    private String prefix = "~";
+    private final String prefix = "~";
     
     @Override
     public void onEnable() {
