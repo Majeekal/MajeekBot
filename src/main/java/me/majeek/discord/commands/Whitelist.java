@@ -74,10 +74,29 @@ public class Whitelist extends ListenerAdapter {
                     event.getChannel().sendMessage(builder.build()).queue();
                 }
             } else{
-                builder.setColor(Color.RED.getColor());
-                builder.setTitle("Your not Majeek!");
+                if(message.length >= 2 && message[1].equalsIgnoreCase("get")) {
+                    builder.setColor(Color.GREEN.getColor());
+                    builder.setTitle("Whitelist:");
 
-                event.getChannel().sendMessage(builder.build()).queue();
+                    StringBuilder tags = new StringBuilder();
+                    for (int i = 0; i < whitelisted.size(); i++) {
+                        if (i == whitelisted.size() - 1) {
+                            tags.append(whitelisted.get(i));
+                        } else {
+                            tags.append(whitelisted.get(i));
+                            tags.append("\n");
+                        }
+                    }
+
+                    builder.setDescription(tags.toString());
+
+                    event.getChannel().sendMessage(builder.build()).queue();
+                } else {
+                    builder.setColor(Color.RED.getColor());
+                    builder.setTitle("Your not Majeek!");
+
+                    event.getChannel().sendMessage(builder.build()).queue();
+                }
             }
         }
     }
