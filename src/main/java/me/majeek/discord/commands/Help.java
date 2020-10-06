@@ -15,7 +15,11 @@ public class Help extends ListenerAdapter {
             builder.setColor(Color.YELLOW.getColor());
             builder.setDescription("**Commands:**\n`~help` - Displays help command." +
                     "\n`~scale <note>` - Displays scale of root note." +
-                    "\n`~transpose <instrument1> <instrument2> <note>` - Transposes <note> of <instrument1> to <instrument2>.");
+                    "\n`~transpose <instrument1> <instrument2> <note>` - Transposes <note> of <instrument1> to <instrument2>." +
+                    "\n`~whitelist <add/remove> <tag>` - Only available to Majeek :D." +
+                    "\n`~whitelist <get>` - Displays people on the whitelist." +
+                    "\n`~spam <tag> <amount> [message]` - Only available to whitelisted people." +
+                    "\n`~meme` - Displays random memes.");
 
             event.getChannel().sendMessage(builder.build()).queue();
         }
