@@ -4,25 +4,46 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Note {
-    private static final List<NoteType> chromatic = Arrays.asList(NoteType.A, NoteType.A_SHARP, NoteType.B, NoteType.C, NoteType.C_SHARP, NoteType.D, NoteType.D_SHARP, NoteType.E, NoteType.F, NoteType.F_SHARP, NoteType.G, NoteType.G_SHARP);
+    private static final List<NoteType> sharpChromatic = Arrays.asList(NoteType.A, NoteType.A_SHARP, NoteType.B, NoteType.C, NoteType.C_SHARP, NoteType.D, NoteType.D_SHARP, NoteType.E, NoteType.F, NoteType.F_SHARP, NoteType.G, NoteType.G_SHARP);
+    private static final List<NoteType> flatChromatic = Arrays.asList(NoteType.A, NoteType.B_FLAT, NoteType.B, NoteType.C, NoteType.D_FLAT, NoteType.D, NoteType.E_FLAT, NoteType.E, NoteType.F, NoteType.G_FLAT, NoteType.G, NoteType.A_FLAT);
 
-    public static NoteType getHalfStep(NoteType note){
+
+    public static NoteType raiseHalfStep(NoteType note){
         int index = 0;
-        if(!chromatic.contains(note)){
-            index = chromatic.indexOf(Note.getHarmonic(note));
+        if(!sharpChromatic.contains(note)){
+            index = sharpChromatic.indexOf(Note.getHarmonic(note));
         } else{
-            index = chromatic.indexOf(note);
+            index = sharpChromatic.indexOf(note);
         }
 
-        if(index + 1 >= chromatic.size()){
-            return chromatic.get(0);
+        if(index + 1 >= sharpChromatic.size()){
+            return sharpChromatic.get(0);
         } else{
-            return chromatic.get(index + 1);
+            return sharpChromatic.get(index + 1);
         }
     }
 
-    public static NoteType getWholeStep(NoteType note){
-        return getHalfStep(getHalfStep(note));
+    public static NoteType raiseWholeStep(NoteType note){
+        return raiseHalfStep(raiseHalfStep(note));
+    }
+
+    public static NoteType decreaseHalfStep(NoteType note){
+        int index;
+        if(!flatChromatic.contains(note)){
+            index = flatChromatic.indexOf(Note.getHarmonic(note));
+        } else{
+            index = flatChromatic.indexOf(note);
+        }
+
+        if(index - 1 < 0){
+            return flatChromatic.get(flatChromatic.size() - 1);
+        } else{
+            return flatChromatic.get(index - 1);
+        }
+    }
+
+    public static NoteType decreaseWholeStep(NoteType note){
+        return decreaseHalfStep(decreaseHalfStep(note));
     }
 
     public static NoteType getHarmonic(NoteType note){

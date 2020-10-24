@@ -20,11 +20,35 @@ public class Scale {
     public void construct(NoteType root, ModeType mode){
         List<NoteType> scale = new ArrayList<>(Collections.singletonList(root));
 
-        for(int i = 0; i < mode.getSteps().size(); i++){
-            if(mode.getSteps().get(i) == 0){
-                scale.add(Note.getHalfStep(scale.get(scale.size() - 1)));
+        for(int i = 0; i < ModeType.IONIAN.getSteps().size(); i++){
+            if(ModeType.IONIAN.getSteps().get(i) == 0){
+                NoteType raised = Note.raiseHalfStep(scale.get(scale.size() - 1));
+
+                if(root.getType() == 0 && Note.isSharp(raised)){
+                    raised = Note.getHarmonic(raised);
+                } else if(root.getType() == 1 && Note.isFlat(raised)){
+                    raised = Note.getHarmonic(raised);
+                }
+
+                scale.add(raised);
             } else{
-                scale.add(Note.getWholeStep(scale.get(scale.size() - 1)));
+                NoteType raised = Note.raiseWholeStep(scale.get(scale.size() - 1));
+
+                if(root.getType() == 0 && Note.isSharp(raised)){
+                    raised = Note.getHarmonic(raised);
+                } else if(root.getType() == 1 && Note.isFlat(raised)){
+                    raised = Note.getHarmonic(raised);
+                }
+
+                scale.add(raised);
+            }
+        }
+
+        for(int i = 1; i < scale.size(); i++){
+            if(mode.getPitch().get(i - 1) == 1){
+                scale.set(i, Note.decreaseHalfStep(scale.get(i)));
+            } else if(mode.getPitch().get(i - 1) == 2){
+                scale.set(i, Note.raiseHalfStep(scale.get(i)));
             }
         }
 
@@ -46,11 +70,35 @@ public class Scale {
     private void construct(){
         List<NoteType> scale = new ArrayList<>(Collections.singletonList(root));
 
-        for(int i = 0; i < mode.getSteps().size(); i++){
-            if(mode.getSteps().get(i) == 0){
-                scale.add(Note.getHalfStep(scale.get(scale.size() - 1)));
+        for(int i = 0; i < ModeType.IONIAN.getSteps().size(); i++){
+            if(ModeType.IONIAN.getSteps().get(i) == 0){
+                NoteType raised = Note.raiseHalfStep(scale.get(scale.size() - 1));
+
+                if(root.getType() == 0 && Note.isSharp(raised)){
+                    raised = Note.getHarmonic(raised);
+                } else if(root.getType() == 1 && Note.isFlat(raised)){
+                    raised = Note.getHarmonic(raised);
+                }
+
+                scale.add(raised);
             } else{
-                scale.add(Note.getWholeStep(scale.get(scale.size() - 1)));
+                NoteType raised = Note.raiseWholeStep(scale.get(scale.size() - 1));
+
+                if(root.getType() == 0 && Note.isSharp(raised)){
+                    raised = Note.getHarmonic(raised);
+                } else if(root.getType() == 1 && Note.isFlat(raised)){
+                    raised = Note.getHarmonic(raised);
+                }
+
+                scale.add(raised);
+            }
+        }
+
+        for(int i = 1; i < scale.size(); i++){
+            if(mode.getPitch().get(i - 1) == 1){
+                scale.set(i, Note.decreaseHalfStep(scale.get(i)));
+            } else if(mode.getPitch().get(i - 1) == 2){
+                scale.set(i, Note.raiseHalfStep(scale.get(i)));
             }
         }
 
